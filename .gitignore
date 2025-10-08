@@ -21,19 +21,11 @@ var/
 *.swp
 *.swo
 
-# ---------------------------
-# Virtual environments
-# ---------------------------
-venv/
-env/
-.venv/
+
 
 # ---------------------------
 # Django
 # ---------------------------
-# Database
-db.sqlite3
-*.sqlite3
 
 # Migrations
 */migrations/*.py
