@@ -1,2 +1,2 @@
-web: gunicorn museum_api.wsgi
+gunicorn museum_api.wsgi:application --bind 0.0.0.0:8080
 

@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['.railway.app', 'localhost']
+ALLOWED_HOSTS = ['.railway.app']
 
 
 # Application definition
@@ -90,16 +90,19 @@ WSGI_APPLICATION = 'museum_api.wsgi.application'
 
 
 
+from decouple import config
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'mcn'),
-        'USER': os.environ.get('DB_USER', 'ba266480'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'Fatimata05'),
-        'HOST': os.environ.get('DB_HOST', 'containers-us-west-123.railway.app'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
+
 
 
 # Password validation
