@@ -91,7 +91,14 @@ WSGI_APPLICATION = 'museum_api.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'mcn'),
+        'USER': os.environ.get('DB_USER', 'ba266480'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'Fatimata05'),
+        'HOST': os.environ.get('DB_HOST', 'containers-us-west-123.railway.app'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+    }
 }
 
 
