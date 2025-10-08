@@ -1,0 +1,77 @@
+# ---------------------------
+# Python
+# ---------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+*.log
+*.pot
+*.mo
+*.pyc
+*.pyd
+*.swp
+*.swo
+
+# ---------------------------
+# Virtual environments
+# ---------------------------
+venv/
+env/
+.venv/
+.env/
+.env.*
+
+# ---------------------------
+# Django
+# ---------------------------
+# Database
+db.sqlite3
+*.sqlite3
+
+# Migrations
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Static / media files
+/staticfiles/
+/media/
+
+# ---------------------------
+# IDE / Editor
+# ---------------------------
+# VSCode
+.vscode/
+# PyCharm
+.idea/
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# ---------------------------
+# OS-specific
+# ---------------------------
+# macOS
+.DS_Store
+# Linux
+*~
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------------------------
+# Logs / temporary files
+# ---------------------------
+*.log
+*.tmp
+*.bak
+*.swp
