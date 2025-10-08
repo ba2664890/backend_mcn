@@ -27,8 +27,6 @@ var/
 venv/
 env/
 .venv/
-.env/
-.env.*
 
 # ---------------------------
 # Django
