@@ -31,9 +31,6 @@ var/
 */migrations/*.py
 !*/migrations/__init__.py
 
-# Static / media files
-/staticfiles/
-/media/
 
 # ---------------------------
 # IDE / Editor
