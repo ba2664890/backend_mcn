@@ -1,2 +1,2 @@
-web: gunicorn backend.museum_api.wsgi
+web: gunicorn museum_api.wsgi
 
