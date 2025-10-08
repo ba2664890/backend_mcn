@@ -22,4 +22,4 @@ psycopg2-binary==2.9.9
 django-cors-headers==4.3.1
 python-decouple==3.8
 Pillow==10.0.1
-dj_database_url=3.0.1
+dj_database_url==3.0.1
