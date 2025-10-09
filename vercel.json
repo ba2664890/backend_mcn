@@ -1,0 +1,8 @@
+{
+  "builds": [
+    { "src": "museum_api/asgi.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "museum_api/asgi.py" }
+  ]
+}
