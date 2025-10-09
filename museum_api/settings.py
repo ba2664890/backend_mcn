@@ -29,11 +29,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ALLOWED_HOSTS = [
-    "backendmcn-production.up.railway.app",
-    ".railway.app",
-    "localhost",
-]
+ALLOWED_HOSTS = ALLOWED_HOSTS = ["backendmcn-production.up.railway.app",".railway.app","localhost"]
 
 
 
@@ -99,7 +95,7 @@ DATABASES = {
     'default': dj_database_url.config(
         default=config(
             'DATABASE_URL',
-            default='postgresql://postgres:8W845MvoO0W7Ch1@db.fmvvphrblamrtbpnuvcm.supabase.co:5432/postgres?sslmode=require'
+            default='postgresql://postgres.fmvvphrblamrtbpnuvcm:8W845MvoO0W7Ch1@aws-1-us-east-2.pooler.supabase.com:6543/postgres'
         ),
         conn_max_age=600,
         ssl_require=True
