@@ -174,13 +174,25 @@ REST_FRAMEWORK = {
     ],
 }
 
-# CORS settings
+# settings.py
+
+# -----------------------
+# CORS
+# -----------------------
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",  # si tu as un front React
+    "https://backendmcn-production.up.railway.app",  # pour tests postman ou internes
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # For development only
+# -----------------------
+# CSRF
+# -----------------------
+CSRF_TRUSTED_ORIGINS = [
+    "https://backendmcn-production.up.railway.app",
+    "https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",
+]
+
+
 
 # Modeltranslation settings
 MODELTRANSLATION_TRANSLATION_FILES = (
