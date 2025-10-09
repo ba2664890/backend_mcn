@@ -22,15 +22,7 @@ var/
 *.swo
 
 
-
-# ---------------------------
-# Django
-# ---------------------------
-
-# Migrations
-*/migrations/*.py
-!*/migrations/__init__.py
-
+#ff
 
 # ---------------------------
 # IDE / Editor
