@@ -97,7 +97,12 @@ WSGI_APPLICATION = 'museum_api.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL', default='sqlite:///db.sqlite3')
+        default=config(
+            'DATABASE_URL',
+            default='postgresql://postgres:8W845MvoO0W7Ch1@db.fmvvphrblamrtbpnuvcm.supabase.co:5432/postgres?sslmode=require'
+        ),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
