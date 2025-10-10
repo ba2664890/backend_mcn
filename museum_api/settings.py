@@ -29,24 +29,25 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 # --------------------------
-# CORS
+# SECURITY & CORS
 # --------------------------
-# En dev local, autoriser toutes les origines pour tests
+
+
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOW_ALL_ORIGINS = False
-    # En prod, seulement ton frontend et ton backend
     CORS_ALLOWED_ORIGINS = [
-        "https://museum-c2haz649p-cardans-projects-cb73ad15.vercel.ap/api",
-        "https://museum-api-production.up.railway.app/api",
+        "https://museum-c2haz649p-cardans-projects-cb73ad15.vercel.app",
     ]
 
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://museum-c2haz649p-cardans-projects-cb73ad15.vercel.app",
+]
 
 # --------------------------
 # APPLICATIONS
