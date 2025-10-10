@@ -22,18 +22,11 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-secret-key')
 # DEBUG False en prod
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = [
-    "backendmcn-production.up.railway.app",
-    ".railway.app",
-    "localhost",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = ["backendmcn-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",
+                        "https://museum-app-two.vercel.app"]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://backendmcn-production.up.railway.app",
-    "https://*.railway.app",
-    "http://127.0.0.1:8000",
-]
+
 
 # --------------------------
 # APPLICATIONS
