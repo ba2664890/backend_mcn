@@ -66,7 +66,6 @@ INSTALLED_APPS = [
     # Apps locales
     'artifacts',
 
-    'corsheaders',
 ]
 
 # --------------------------
