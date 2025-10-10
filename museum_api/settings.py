@@ -30,7 +30,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here'
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 
-ALLOWED_HOSTS = ALLOWED_HOSTS = ["backendmcn-production.up.railway.app",".railway.app","localhost"]
+ALLOWED_HOSTS = ["museum-api-production.up.railway.app", "127.0.0.1"]
 
 
 
@@ -145,6 +145,21 @@ USE_I18N = True
 
 USE_TZ = True
 
+# settings.py
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # log toutes les requêtes SQL
+        },
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -190,10 +205,13 @@ CORS_ALLOWED_ORIGINS = [
 # -----------------------
 CSRF_TRUSTED_ORIGINS = [
     "https://backendmcn-production.up.railway.app",
-    "https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",
+    "https://museum-n52ccpur9-cardans-projects-cb73ad15.vercel.app/",
 ]
 
 
+
+INSTALLED_APPS += ["corsheaders"]
+MIDDLEWARE = ["corsheaders.middleware.CorsMiddleware"] + MIDDLEWARE
 
 # Modeltranslation settings
 MODELTRANSLATION_TRANSLATION_FILES = (
