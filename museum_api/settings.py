@@ -29,16 +29,11 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 # Sécurité / CORS / CSRF
-CSRF_TRUSTED_ORIGINS = [
-    "https://backendmcn-production.up.railway.app",
-    "https://museum-app-two.vercel.app",
-]
-
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    "https://backendmcn-production.up.railway.app",
-    "https://museum-app-two.vercel.app",
+    "https://museum-2x1rm2eav-cardans-projects-cb73ad15.vercel.app",
+    "https://museum-api-production.up.railway.app",
 ]
-
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
@@ -180,11 +175,7 @@ REST_FRAMEWORK = {
 # --------------------------
 # CORS
 # --------------------------
-CORS_ALLOW_ALL_ORIGINS = True  # Dev seulement
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+
 
 # --------------------------
 # DJANGO JAZZMIN (Admin)
