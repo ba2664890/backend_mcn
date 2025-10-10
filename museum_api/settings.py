@@ -29,8 +29,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-
-ALLOWED_HOSTS = ["museum-api-production.up.railway.app", "127.0.0.1"]
+ALLOWED_HOSTS = ALLOWED_HOSTS = ["backendmcn-production.up.railway.app",".railway.app","localhost"]
 
 
 
@@ -175,28 +174,13 @@ REST_FRAMEWORK = {
     ],
 }
 
-# settings.py
-
-# -----------------------
-# CORS
-# -----------------------
+# CORS settings
 CORS_ALLOWED_ORIGINS = [
-    "https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",  # si tu as un front React
-    "https://backendmcn-production.up.railway.app",  # pour tests postman ou internes
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
-# -----------------------
-# CSRF
-# -----------------------
-CSRF_TRUSTED_ORIGINS = [
-    "https://backendmcn-production.up.railway.app",
-    "https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",
-]
-
-
-
-INSTALLED_APPS += ["corsheaders"]
-MIDDLEWARE = ["corsheaders.middleware.CorsMiddleware"] + MIDDLEWARE
+CORS_ALLOW_ALL_ORIGINS = True  # For development only
 
 # Modeltranslation settings
 MODELTRANSLATION_TRANSLATION_FILES = (
