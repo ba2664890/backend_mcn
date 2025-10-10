@@ -29,7 +29,11 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ALLOWED_HOSTS = ["backendmcn-production.up.railway.app",".railway.app","localhost"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://backendmcn-production.up.railway.app",  # ton backend
+    "https://ton-frontend-domain.com",              # ton frontend si c'est autre
+]
+
 
 
 
