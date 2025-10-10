@@ -8,7 +8,7 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 import os
-
+import django.middleware.csrf
 # --------------------------
 # BASE DIR
 # --------------------------
@@ -30,11 +30,13 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://backendmcn-production.up.railway.app",
-    "https://*.railway.app",
-    "http://127.0.0.1:8000",
+    'https://museum-app-two.vercel.app',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
 ]
 
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_HEADER_NAME = 'X-CSRFToken'
 # --------------------------
 # APPLICATIONS
 # --------------------------
@@ -55,6 +57,8 @@ INSTALLED_APPS = [
 
     # Apps locales
     'artifacts',
+
+    'corsheaders',
 ]
 
 # --------------------------
@@ -71,6 +75,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+
+CORS_ALLOWED_ORIGINS = [
+    'https://museum-app-two.vercel.app',
+    'http://localhost:3000',
 ]
 
 # --------------------------
