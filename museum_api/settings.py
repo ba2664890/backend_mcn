@@ -45,6 +45,7 @@ CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = [
+    "https://backendmcn-production.up.railway.app",  # ton backend sur Railway
     "https://museum-c2haz649p-cardans-projects-cb73ad15.vercel.app",
 ]
 # Autoriser le cookie CSRF cross-site
