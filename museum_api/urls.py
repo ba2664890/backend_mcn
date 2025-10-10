@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from artifacts.views import csrf_token
 
-from artifacts.views import csrf_token
+from .views import csrf_token
 
 urlpatterns = [
     path('health/', lambda request: JsonResponse({'status': 'ok'})),
