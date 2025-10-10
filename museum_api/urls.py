@@ -26,7 +26,6 @@ from .views import csrf_token
 urlpatterns = [
     path('health/', lambda request: JsonResponse({'status': 'ok'})),
     path('admin/', admin.site.urls),
-    path('/', admin.site.urls),
     path('api/', include('artifacts.urls')),
     path('api/csrf/', csrf_token),
 ]
