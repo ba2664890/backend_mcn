@@ -42,12 +42,14 @@ else:
     ]
 
 CORS_ALLOW_CREDENTIALS = True
-CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://museum-c2haz649p-cardans-projects-cb73ad15.vercel.app",
 ]
+# Autoriser le cookie CSRF cross-site
+CSRF_COOKIE_SAMESITE = None
+CSRF_COOKIE_SECURE = True  # obligatoire si SameSite=None
 
 # --------------------------
 # APPLICATIONS
