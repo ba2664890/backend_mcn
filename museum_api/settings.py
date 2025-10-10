@@ -145,21 +145,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-# settings.py
-LOGGING = {
-    'version': 1,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG',  # log toutes les requêtes SQL
-        },
-    }
-}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -205,7 +190,7 @@ CORS_ALLOWED_ORIGINS = [
 # -----------------------
 CSRF_TRUSTED_ORIGINS = [
     "https://backendmcn-production.up.railway.app",
-    "https://museum-n52ccpur9-cardans-projects-cb73ad15.vercel.app/",
+    "https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",
 ]
 
 
