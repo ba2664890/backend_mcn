@@ -1,13 +1,25 @@
+"""
+Django settings for museum_api project.
+
+Déploiement prêt pour Railway / Supabase.
+"""
+
 from pathlib import Path
 from decouple import config
 import dj_database_url
 import os
 
-# --- Paths ---
+# --------------------------
+# BASE DIR
+# --------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# --- Security ---
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key')
+# --------------------------
+# SECURITY
+# --------------------------
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-secret-key')
+
+# DEBUG False en prod
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
@@ -17,32 +29,39 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
-# --- CSRF ---
 CSRF_TRUSTED_ORIGINS = [
     "https://backendmcn-production.up.railway.app",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "https://*.railway.app",
+    "http://127.0.0.1:8000",
 ]
 
-# --- Installed apps ---
+# --------------------------
+# APPLICATIONS
+# --------------------------
 INSTALLED_APPS = [
     'jazzmin',
-    'modeltranslation',  # Must be before admin
+    'modeltranslation',  # avant admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # API & utils
     'rest_framework',
     'corsheaders',
     'django_filters',
+
+    # Apps locales
     'artifacts',
 ]
 
-# --- Middleware ---
+# --------------------------
+# MIDDLEWARE
+# --------------------------
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # static
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,9 +73,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# --------------------------
+# URLS & WSGI
+# --------------------------
 ROOT_URLCONF = 'museum_api.urls'
+WSGI_APPLICATION = 'museum_api.wsgi.application'
 
-# --- Templates ---
+# --------------------------
+# TEMPLATES
+# --------------------------
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -73,21 +98,23 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'museum_api.wsgi.application'
-
-# --- Database ---
+# --------------------------
+# DATABASE
+# --------------------------
 DATABASES = {
     'default': dj_database_url.config(
         default=config(
             'DATABASE_URL',
-            default='postgresql://postgres:password@host:port/dbname'
+            default='postgresql://postgres.fmvvphrblamrtbpnuvcm:8W845MvoO0W7Ch1@aws-1-us-east-2.pooler.supabase.com:6543/postgres'
         ),
         conn_max_age=600,
         ssl_require=True
     )
 }
 
-# --- Password validation ---
+# --------------------------
+# PASSWORD VALIDATION
+# --------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -95,20 +122,26 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# --- Internationalization ---
+# --------------------------
+# INTERNATIONALIZATION
+# --------------------------
 LANGUAGE_CODE = 'fr'
 LANGUAGES = [
     ('fr', 'Français'),
     ('en', 'English'),
     ('wo', 'Wolof'),
 ]
+
 MODELTRANSLATION_LANGUAGES = ('fr', 'en', 'wo')
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'fr'
+
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# --- Static & Media files ---
+# --------------------------
+# STATIC & MEDIA
+# --------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -116,9 +149,13 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# --- DRF ---
+# --------------------------
+# REST FRAMEWORK
+# --------------------------
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
     'DEFAULT_FILTER_BACKENDS': [
@@ -128,25 +165,43 @@ REST_FRAMEWORK = {
     ],
 }
 
-# --- CORS ---
-CORS_ALLOW_ALL_ORIGINS = True  # ⚠️ à limiter en prod si nécessaire
-CORS_ALLOW_CREDENTIALS = True  # Pour les cookies / sessions
+# --------------------------
+# CORS
+# --------------------------
+CORS_ALLOW_ALL_ORIGINS = True  # Dev seulement
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
-# --- Jazzmin (admin custom) ---
+# --------------------------
+# DJANGO JAZZMIN (Admin)
+# --------------------------
 JAZZMIN_SETTINGS = {
     "site_title": "Musée National du Sénégal",
     "site_header": "Administration du Musée",
     "site_brand": "Musée National du Sénégal",
-    "site_logo": "images/logo_mcn.png",  # mettre dans static/images/
+    "site_logo": "images/logo_mcn.png",
     "welcome_sign": "Bienvenue à l’espace d’administration",
+    "copyright": "© Musée National du Sénégal 2025",
     "search_model": "artifacts.Artifact",
-    "show_sidebar": True,
+    "topmenu_links": [
+        {"name": "Accueil", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"app": "artifacts", "name": "Artefacts"},
+    ],
+    "default_icon_parents": True,
+    "default_icon_children": True,
     "related_modal_active": True,
+    "show_sidebar": True,
     "changeform_format": "horizontal_tabs",
 }
 
-# --- Modeltranslation ---
-MODELTRANSLATION_TRANSLATION_FILES = ('artifacts.translation',)
+# --------------------------
+# APPEND_SLASH
+# --------------------------
+APPEND_SLASH = True  # pour éviter 301 sur /api
 
-# --- Default primary key ---
+# --------------------------
+# DEFAULT PRIMARY KEY
+# --------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
