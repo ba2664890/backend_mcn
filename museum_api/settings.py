@@ -21,10 +21,20 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-secret-key')
 
 # DEBUG False en prod
 DEBUG = config('DEBUG', default=False, cast=bool)
+# Sécurité / CORS / CSRF
+CSRF_TRUSTED_ORIGINS = [
+    "https://backendmcn-production.up.railway.app",
+    "https://museum-app-two.vercel.app",
+]
 
-ALLOWED_HOSTS = ["backendmcn-production.up.railway.app"]
-CSRF_TRUSTED_ORIGINS = ["https://museum-app-git-main-cardans-projects-cb73ad15.vercel.app",
-                        "https://museum-app-two.vercel.app"]
+CORS_ALLOWED_ORIGINS = [
+    "https://backendmcn-production.up.railway.app",
+    "https://museum-app-two.vercel.app",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 
 
