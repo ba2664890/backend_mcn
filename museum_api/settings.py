@@ -21,6 +21,13 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-secret-key')
 
 # DEBUG False en prod
 DEBUG = config('DEBUG', default=False, cast=bool)
+
+ALLOWED_HOSTS = [
+    "backendmcn-production.up.railway.app",
+    ".railway.app",
+    "localhost",
+    "127.0.0.1",
+]
 # Sécurité / CORS / CSRF
 CSRF_TRUSTED_ORIGINS = [
     "https://backendmcn-production.up.railway.app",
@@ -64,6 +71,7 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 # --------------------------
 MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',  # static
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
