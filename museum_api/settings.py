@@ -49,7 +49,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 # Autoriser le cookie CSRF cross-site
 CSRF_COOKIE_SAMESITE = None
-CSRF_COOKIE_SECURE = True  # obligatoire si SameSite=None
+
 
 # --------------------------
 # APPLICATIONS
