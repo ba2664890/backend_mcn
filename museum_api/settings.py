@@ -43,7 +43,7 @@ else:
 
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SECURE = True
-
+CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = [
     "https://museum-c2haz649p-cardans-projects-cb73ad15.vercel.app",
 ]
