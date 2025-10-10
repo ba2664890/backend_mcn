@@ -95,7 +95,7 @@ DATABASES = {
     'default': dj_database_url.config(
         default=config(
             'DATABASE_URL',
-            default='postgresql://postgres.fmvvphrblamrtbpnuvcm:8W845MvoO0W7Ch1@aws-1-us-east-2.pooler.supabase.com:6543/postgres'
+            default='postgresql://postgres.fmvvphrblamrtbpnuvcm:8W845MvoO0W7Ch1j@aws-1-us-east-2.pooler.supabase.com:6543/postgres'
         ),
         conn_max_age=600,
         ssl_require=True
