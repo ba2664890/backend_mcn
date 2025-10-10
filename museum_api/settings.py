@@ -36,7 +36,7 @@ ALLOWED_HOSTS = [
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
-    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOW_ALL_ORIGINS = True
     CORS_ALLOWED_ORIGINS = [
         "https://museum-c2haz649p-cardans-projects-cb73ad15.vercel.app",
     ]
