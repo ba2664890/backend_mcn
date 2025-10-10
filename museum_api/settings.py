@@ -32,6 +32,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 CSRF_TRUSTED_ORIGINS = [
     "https://backendmcn-production.up.railway.app",  # ton backend
     "https://ton-frontend-domain.com",              # ton frontend si c'est autre
+    "127.0.0.1",
 ]
 
 
