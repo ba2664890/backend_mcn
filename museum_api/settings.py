@@ -174,7 +174,6 @@ JAZZMIN_SETTINGS = {
     "site_title": "Musée National du Sénégal",
     "site_header": "Administration du Musée",
     "site_brand": "Musée National du Sénégal",
-    "site_logo": "images/logo_mcn.png",
     "welcome_sign": "Bienvenue à l’espace d’administration",
     "copyright": "© Musée National du Sénégal 2025",
     "search_model": "artifacts.Artifact",
