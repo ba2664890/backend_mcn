@@ -203,21 +203,28 @@ class MuseumStatsViewSet(viewsets.ViewSet):
     
     @action(detail=False, methods=['get'])
     def dashboard(self, request):
-        """Get museum statistics for dashboard"""
+        """Get museum statistics for dashboard (only visits >= 60s counted)"""
         total_artifacts = Artifact.objects.filter(is_on_display=True).count()
         total_collections = Collection.objects.count()
         featured_artifacts = Artifact.objects.filter(is_on_display=True, is_featured=True).count()
-        total_visits = MuseumVisit.objects.count()
+
+        # ✅ Compter uniquement les visites valides (>= 60 secondes)
+        total_visits = MuseumVisit.objects.filter(duration_seconds__gte=60).count()
         
-        # Most visited artifacts
-        most_visited = Artifact.objects.filter(
-            is_on_display=True
-        ).annotate(
-            visit_count=models.Count('visits')
-        ).order_by('-visit_count')[:5]
-        
-        # Recent visits
-        recent_visits = MuseumVisit.objects.order_by('-visited_at')[:10]
+        # ✅ Most visited artifacts (visites valides uniquement)
+        most_visited = (
+            Artifact.objects.filter(is_on_display=True)
+            .annotate(
+                visit_count=models.Count(
+                    'visits',
+                    filter=models.Q(visits__duration_seconds__gte=60)
+                )
+            )
+            .order_by('-visit_count')[:5]
+        )
+
+        # ✅ Recent valid visits (>= 60s)
+        recent_visits = MuseumVisit.objects.filter(duration_seconds__gte=60).order_by('-visited_at')[:10]
         
         return Response({
             'stats': {
@@ -235,5 +242,3 @@ class MuseumStatsViewSet(viewsets.ViewSet):
             ],
             'recent_visits': MuseumVisitSerializer(recent_visits, many=True).data
         })
-    
-
